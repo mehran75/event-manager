@@ -1,0 +1,63 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+              integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+              crossorigin="anonymous">
+
+        <link rel="stylesheet" type="text/css" href={% static 'style/base_css.css' %}>
+
+        <meta charset="UTF-8">
+    {% endblock %}
+</head>
+<body>
+{% block content %}
+    <header id="home">
+
+        {% block header %}
+            <nav class="navigation">
+
+                <div class="nav" id="nav">
+
+
+                    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                        <i class="fa fa-bars"></i></a>
+                    <a href="#home" class="active">Home</a>
+                    <a href="#event-section">Active Events</a>
+                    <a href="/account/login">Login</a>
+
+
+                </div>
+                {#<div class="profile">#}
+                {#                <p>Mehran Rafiee</p>#}
+                {#                <a href="/logout"><i class="fa fa-sign-out"></i></a>#}
+                {#            </div>#}
+
+            </nav>
+
+        {% endblock %}
+
+    </header>
+
+
+    {% block footer %}
+
+        <footer>
+
+
+            <p>All rights receives bla bla bla</p>
+            <p>Contact information: <a href="mailto:mehranrafiee5@gmail.com">
+                mehranrafiee5@gmail.com</a>.</p>
+
+        </footer>
+
+    {% endblock %}
+
+{% endblock %}
+
+</body>
+</html>

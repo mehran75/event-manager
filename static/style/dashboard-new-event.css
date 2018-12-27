@@ -1,0 +1,31 @@
+.new-event-form {
+    display: flow;
+    max-width: 60%;
+}
+
+
+input[type=text], input[type=time], input[type=date], input[type=file] {
+
+    width: 100%;
+    padding: 12px 20px;
+    margin: 1%;
+    box-sizing: border-box;
+    border: none;
+    background-color: rgba(245, 245, 245, 1);
+    color: black;
+}
+
+button:not(.select) {
+    background-color: rgba(0, 150, 136, 1);
+    color: white;
+    padding: 14px 20px;
+    margin: 1%;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+    opacity: 0.8;
+}

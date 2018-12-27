@@ -1,0 +1,100 @@
+{% extends "base_layout.html" %}
+{% load static from staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+        {{ block.super }}
+        <title>Sign-up</title>
+
+
+        <link rel="stylesheet" type="text/css" href="{% static 'style/account.css' %}"/>
+    {% endblock %}
+</head>
+<body>
+{% block content %}
+    <header>
+        {% block header %}
+            {{ block.super }}
+        {% endblock %}
+    </header>
+
+    <div class="wrapper-div">
+        <form method="post" class="sign-up-form" action="/dashboard">
+
+            <div class="container">
+
+                <section class="personal-info">
+                    <div class="input-div">
+                        <input type="text" placeholder="first name" name="first_name" required>
+                    </div>
+
+                    <div class="input-div">
+                        <input type="text" placeholder="last name" name="last_name" required>
+                    </div>
+
+                    <div class="input-div">
+                        <input type="text" placeholder="job" name="job" required>
+                    </div>
+
+                    <div class="input-div">
+                        <input type="tel" placeholder="cellphone number" name="cellphone" required>
+                    </div>
+
+                    <div class="input-div">
+                        <input type="text" placeholder="Mail" name="uname" required>
+                    </div>
+                </section>
+
+                <hr>
+
+                <section class="password-info">
+
+                    <div class="input-div">
+                        <input type="password" placeholder="Password" name="password" required>
+                    </div>
+                    <div class="input-div">
+                        <input type="password" placeholder="confirm password" name="password" required>
+                    </div>
+                </section>
+
+
+                <hr>
+
+
+                <div>
+
+                    <div>
+                        <input type="radio" id="normal" name="user-type" value="normal"
+                               checked>
+                        <label for="normal">normal</label>
+                    </div>
+
+                    <div>
+                        <input type="radio" id="presenter" name="user-type" value="presenter">
+                        <label for="presenter">presenter</label>
+                    </div>
+
+                </div>
+
+                <button type="submit">Sign-up</button>
+            </div>
+
+
+            <a href="/account/login">Already signed up?</a>
+
+        </form>
+    </div>
+
+
+
+{% block footer %}
+        {{ block.super }}
+{% endblock %}
+
+{% endblock %}
+
+
+</body>
+</html>

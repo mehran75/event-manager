@@ -1,0 +1,141 @@
+body {
+    /*background-image: url("/static/img/neuron_bg.jpg");*/
+    background-color: white;
+    background-size: cover;
+    background-attachment: fixed;
+
+    margin: 0;
+}
+
+header {
+    height: 700px;
+    min-height: 500px;
+    width: 100%;
+    background: #141111 url(/static/img/header_img.jpg) no-repeat top center;
+    /*background: white no-repeat top center;*/
+    background-size: cover;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+/*block div*/
+header .block-div {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    height: auto;
+    min-height: auto;
+
+    background-color: rgba(33, 33, 33, .8);
+    margin: 0 10% 0 10%;
+    padding: 1%;
+
+    color: white;
+}
+
+.social {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 2%;
+    align-items: center;
+    list-style-type: none;
+
+}
+
+.social a {
+    margin: 1%;
+    align-self: center;
+}
+
+a {
+    color: white;
+}
+
+.info-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: rgba(97, 97, 97, .5);
+    margin-left: 10%;
+    margin-right: 10%;
+
+}
+
+.info-div h3 {
+    color: white;
+
+}
+
+
+section .container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+section {
+    margin-bottom: 1%;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: 2%;
+    text-align: center;
+
+}
+
+.price {
+    color: grey;
+}
+
+.card button {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: rgba(0,150,136 ,1);
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+}
+
+.card button:hover {
+    opacity: 0.7;
+}
+
+
+.pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-self: center;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+.pagination a.active {
+    background-color: rgba(0,150,136 ,1);
+    color: white;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+}
+

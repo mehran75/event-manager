@@ -1,0 +1,132 @@
+{% extends "base_dashboard.html" %}
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+        {{ block.super }}
+    {% endblock %}
+</head>
+<body>
+
+    <div class="container">
+        {% block container %}
+
+            <div class="list-side">
+                {% block list-side %}
+                    {{ block.super }}
+
+                {% endblock %}
+            </div>
+
+            <div class="content-side">
+
+                {% block content-side %}
+                    {{ block.super }}
+                    <section id="event-section" class="event-section">
+                        <div class="container">
+
+                            <div class="card">
+                                <img alt="card-view" style="width:100%" src={% static 'img/event-default.png' %}/>
+                                <h1>event</h1>
+                                <p class="price">Free</p>
+                                <p>Some text about the jeans. Super slim and comfy lorem ipsum lorem jeansum. Lorem
+                                    jeamsun
+                                    denim lorem
+                                    jeansum.</p>
+                                <p>
+                                    <button>Register now</button>
+                                </p>
+                            </div>
+
+                            <div class="card">
+                                <img alt="card-view" style="width:100%" src={% static 'img/event-default.png' %}/>
+                                <h1>event</h1>
+                                <p class="price">Free</p>
+                                <p>Some text about the jeans. Super slim and comfy lorem ipsum lorem jeansum. Lorem
+                                    jeamsun
+                                    denim lorem
+                                    jeansum.</p>
+                                <p>
+                                    <button>Register now</button>
+                                </p>
+                            </div>
+
+                            <div class="card">
+                                <img alt="card-view" style="width:100%" src={% static 'img/event-default.png' %}/>
+                                <h1>event</h1>
+                                <p class="price">Free</p>
+                                <p>Some text about the jeans. Super slim and comfy lorem ipsum lorem jeansum. Lorem
+                                    jeamsun
+                                    denim lorem
+                                    jeansum.</p>
+                                <p>
+                                    <button>Register now</button>
+                                </p>
+                            </div>
+
+                            <div class="card">
+                                <img alt="card-view" style="width:100%" src={% static 'img/event-default.png' %}/>
+                                <h1>event</h1>
+                                <p class="price">Free</p>
+                                <p>Some text about the jeans. Super slim and comfy lorem ipsum lorem jeansum. Lorem
+                                    jeamsun
+                                    denim lorem
+                                    jeansum.</p>
+                                <p>
+                                    <button>Register now</button>
+                                </p>
+                            </div>
+
+                            <div class="card">
+                                <img alt="card-view" style="width:100%" src={% static 'img/event-default.png' %}/>
+                                <h1>event</h1>
+                                <p class="price">Free</p>
+                                <p>Some text about the jeans. Super slim and comfy lorem ipsum lorem jeansum. Lorem
+                                    jeamsun
+                                    denim lorem
+                                    jeansum.</p>
+                                <p>
+                                    <button>Register now</button>
+                                </p>
+                            </div>
+
+                            <div class="card">
+                                <img alt="card-view" style="width:100%" src={% static 'img/event-default.png' %}/>
+                                <h1>event</h1>
+                                <p class="price">Free</p>
+                                <p>Some text about the jeans. Super slim and comfy lorem ipsum lorem jeansum. Lorem
+                                    jeamsun
+                                    denim lorem
+                                    jeansum.</p>
+                                <p>
+                                    <button>Register now</button>
+                                </p>
+                            </div>
+                        </div><!-- end container -->
+
+
+                        <div class="pagination">
+                            <a href="#">&laquo;</a>
+                            <a href="#" class="active">1</a>
+                            <a href="#">2</a>
+                            <a href="#">3</a>
+                            <a href="#">4</a>
+                            <a href="#">5</a>
+                            <a href="#">6</a>
+                            <a href="#">&raquo;</a>
+                        </div>
+
+
+                    </section>
+                {% endblock %}
+            </div>
+
+        {% endblock %}
+        {{ block.super }}
+
+
+    </div>
+
+</body>
+</html>

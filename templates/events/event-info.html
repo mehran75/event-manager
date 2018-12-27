@@ -1,0 +1,82 @@
+{% extends "base_layout.html" %}
+{% load static from staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+        {{ block.super }}
+        <meta charset="UTF-8">
+        <title>event-id</title>
+
+        <link rel="stylesheet" type="text/css" href={% static 'style/event_info.css' %}
+    {% endblock %}
+    </head>
+<body>
+{% block content %}
+    <header>
+        {% block header %}
+            {{ block.super }}
+        {% endblock %}
+    </header>
+        <br/>
+
+    <img src="/static/img/event1.png" alt="banner" class="event-banner">
+
+    <div class="content">
+
+        <h2>Event Title</h2>
+
+        <p class="time">Start at: 2019-01-01 / 10:00 AM</p>
+
+        <p class="authors">Authors: Me and you </p>
+
+        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum
+            sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
+            ultricies
+            nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel,
+            aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam
+            dictum
+            felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean
+            vulputate
+            eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante,
+            dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque
+            rutrum.
+            Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam
+            rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem
+            neque
+            sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante
+            tincidunt
+            tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros
+            faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed
+            consequat,
+            leo eget bibendum sodales, augue velit cursus nunc,</p>
+
+        <br/>
+
+        <label class="timer">00:01:59</label>
+
+
+        <div class="sponsor-div">
+            needs to complete
+        </div>
+
+        <button>Register now</button>
+
+    </div>
+
+
+
+
+
+
+
+    {% block footer %}
+        {{ block.super }}
+    {% endblock %}
+
+{% endblock %}
+
+
+</body>
+</html>

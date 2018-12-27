@@ -1,0 +1,76 @@
+body {
+    background-image: url("/static/img/neuron_bg.jpg");
+    background-position: center;
+    background-size: cover;
+    margin: 0;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+
+
+    justify-content: center;
+
+}
+
+
+.wrapper-div {
+    padding: 5%;
+    margin: 10% auto;
+    background-color: rgba(255, 255, 255, .3);
+    max-width: 30%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+
+input[type=text], input[type=password] ,input[type=tel] ,input[type=email] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 2% 0;
+    box-sizing: border-box;
+    border: none;
+    background-color: rgba(245,245,245 ,1);
+    color: black;
+}
+
+.input-div {
+
+    margin: 5% 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+span, a,label {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    color: rgba(0, 150, 136, 1);
+}
+
+button:not(.select) {
+  background-color: rgba(0,150,136 ,1);
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+  opacity: 0.8;
+}
+
+
+section {
+    display: block;
+    justify-content: center;
+}

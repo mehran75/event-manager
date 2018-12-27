@@ -1,0 +1,33 @@
+{% extends "base_layout.html" %}
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   {% block head %}
+        {{ block.super }}
+        <meta charset="UTF-8">
+        <title>404-Not found</title>
+
+
+        <link rel="stylesheet" href={% static 'style/main.css'%}>
+
+    {% endblock %}
+</head>
+<body>
+{% block content %}
+    <header>
+        {% block header %}
+            {{ block.super }}
+        {% endblock %}
+    </header>
+
+
+
+    <h1>Make sure your URL is correct!</h1>
+    <br>
+
+    <a href="/">Go Home</a>
+
+{% endblock %}
+</body>
+</html>

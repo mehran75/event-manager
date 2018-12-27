@@ -1,0 +1,62 @@
+{% extends "base_layout.html" %}
+{% load static from staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+        {{ block.super }}
+        <title>Login</title>
+
+        <link rel="stylesheet" type="text/css" href="{% static 'style/account.css' %}"/>
+
+    {% endblock %}
+</head>
+<body>
+
+{% block content %}
+    <header>
+        {% block header %}
+            {{ block.super }}
+        {% endblock %}
+    </header>
+
+    <div class="wrapper-div">
+        <form method="post" class="sign-up-form" action="/account/dashboard">
+
+
+            <div class="container">
+                <div class="input-div">
+
+                    {#                <label for="uname"><b>Mail</b></label>#}
+                    <input type="text" placeholder="Mail" name="uname" required>
+                </div>
+
+                <div class="input-div">
+
+                    {#                <label for="psw"><b>Password</b></label>#}
+                    <input type="password" placeholder="Password" name="psw" required>
+                </div>
+
+                <label>
+                    <input type="checkbox" checked="checked" name="remember"> Remember me
+                </label>
+                <button type="submit">Login</button>
+
+            </div>
+
+            <a href="#">Forgot password?</a>
+            <br>
+            <a href="/account/sign-up">new to this site?</a>
+
+        </form>
+    </div>
+
+
+    {% block footer %}
+        {{ block.super }}
+    {% endblock %}
+
+{% endblock %}
+</body>
+</html>

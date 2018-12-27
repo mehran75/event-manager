@@ -1,0 +1,87 @@
+{% extends "base_layout.html" %}
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+        {{ block.super }}
+        <meta charset="UTF-8">
+        <title>Dashboard</title>
+
+        <link rel="stylesheet" type="text/css" href={% static 'style/dashboard.css' %}/>
+    {% endblock %}
+</head>
+<body>
+{% block content %}
+    <header>
+        {% block header %}
+            {{ block.super }}
+
+            <br>
+            <br>
+
+            <div class="profile-info">
+                <img id="profile-img" src={% static 'img/profile-icon.png' %}/>
+
+                <h4>Mehran</h4>
+                <p>(Presenter)</p>
+                <a href="/notifications"><i class="fas fa-bell"></i></a>
+                <a href="/logout"><i class="fas fa-sign-out-alt"></i></a>
+
+
+            </div>
+
+        {% endblock %}
+    </header>
+
+
+
+
+
+    <div class="container">
+        {% block container %}
+            <div class="list-side">
+                {% block list-side %}
+                    <div class="menu-div">
+                        <a class="menu-item active" href="/account/dashboard">First Page</a>
+                        <a class="menu-item" href="/account/dashboard-new-event">New event</a>
+                        <a class="menu-item" href="#">Messages</a>
+                        <a class="menu-item" href="/account/dashboard-event-list">My events</a>
+                        <a class="menu-item" href="#">requests(only for presenters)</a>
+                        <a class="menu-item" href="#">All users(only for admin)</a>
+                        <a class="menu-item" href="#">All events(only for admin)</a>
+                        <a class="menu-item" href="#">Settings</a>
+                        <a class="menu-item" href="#">FAQ</a>
+                    </div>
+
+                {% endblock %}
+            </div>
+
+            <div class="content-side">
+
+                {% block content-side %}
+
+                    <p style="color: red;">(This text will be removed)<br>
+                        this is just a demo, so the other parts of this page will be completed for final phase of the
+                        project :)
+                    </p>
+
+
+                {% endblock %}
+
+            </div>
+
+        {% endblock %}
+    </div>
+
+
+
+    {% block footer %}
+        {{ block.super }}
+    {% endblock %}
+
+{% endblock %}
+
+
+</body>
+</html>
