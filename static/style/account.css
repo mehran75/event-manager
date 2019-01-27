@@ -16,7 +16,7 @@ body {
     padding: 5%;
     margin: 10% auto;
     background-color: rgba(255, 255, 255, .3);
-    max-width: 30%;
+    max-width: fit-content;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -33,16 +33,20 @@ input[type=text], input[type=password] ,input[type=tel] ,input[type=email] {
     color: black;
 }
 
-.input-div {
-
-    margin: 5% 0;
+button {
+    margin: 2% 0;
 }
 
 .container {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
+    max-width: 700px;
+}
+
+form {
+    margin: auto;
 }
 
 span, a,label {
@@ -73,4 +77,12 @@ button:hover {
 section {
     display: block;
     justify-content: center;
+}
+
+.login-result{
+    color: rgba(244,67,54,1);
+    background-color: rgba(255, 255, 255, .3);
+    max-width: fit-content;
+    padding: 1%;
+    align-self: center;
 }

@@ -25,19 +25,10 @@
 
     <div class="container">
         {% block container %}
+
             <div class="list-side">
                 {% block list-side %}
-                    <div class="menu-div">
-                        <a class="menu-item active" href="/account/dashboard">First Page</a>
-                        <a class="menu-item" href="/account/dashboard-new-event">New event</a>
-                        <a class="menu-item" href="#">Messages</a>
-                        <a class="menu-item" href="/account/dashboard-event-list">My events</a>
-                        <a class="menu-item" href="#">requests(only for presenters)</a>
-                        <a class="menu-item" href="#">All users(only for admin)</a>
-                        <a class="menu-item" href="#">All events(only for admin)</a>
-                        <a class="menu-item" href="#">Settings</a>
-                        <a class="menu-item" href="#">FAQ</a>
-                    </div>
+                    {{ block.super }}
 
                 {% endblock %}
             </div>

@@ -22,31 +22,36 @@
     </header>
 
     <div class="wrapper-div">
-        <form method="post" class="sign-up-form" action="/account/dashboard">
 
+        <p class="login-result">{{ result }}</p>
+
+        <form method="post" class="sign-up-form" action="/account/validate-user">
+            {% csrf_token %}
+
+{#            {{ form.as_p }}#}
 
             <div class="container">
                 <div class="input-div">
 
-                    {#                <label for="uname"><b>Mail</b></label>#}
-                    <input type="text" placeholder="Mail" name="uname" required>
+                                    <label for="uname"><b>Mail</b></label>
+                    <input type="text" placeholder="Mail" name="mail" required>
                 </div>
 
                 <div class="input-div">
 
-                    {#                <label for="psw"><b>Password</b></label>#}
-                    <input type="password" placeholder="Password" name="psw" required>
+                                    <label for="psw"><b>Password</b></label>
+                    <input type="password" placeholder="Password" name="password" required>
                 </div>
 
                 <label>
                     <input type="checkbox" checked="checked" name="remember"> Remember me
                 </label>
                 <button type="submit">Login</button>
-
+{##}
             </div>
-
-            <a href="#">Forgot password?</a>
-            <br>
+{##}
+{#            <a href="#">Forgot password?</a>#}
+{#            <br>#}
             <a href="/account/sign-up">new to this site?</a>
 
         </form>

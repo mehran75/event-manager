@@ -35,6 +35,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'database',
+    'event_manager'
 ]
 
 MIDDLEWARE = [
@@ -47,6 +49,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+PASSWORD_HASHERS = (
+    'django.contrib.auth.hashers.MD5PasswordHasher',
+)
 ROOT_URLCONF = 'event_manager.urls'
 
 TEMPLATES = [
@@ -116,3 +121,14 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+LOGIN_REDIRECT_URL = '/account/dashboard'
+LOGIN_URL = '/account/login'
+LOGOUT_REDIRECT_URL = 'home'
+# from django.contrib.auth.hashers import make_password
+# print(make_password('1234','12@{}E#E}{'))
+
+# Authentication backends
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+)

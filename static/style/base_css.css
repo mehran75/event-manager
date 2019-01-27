@@ -1,17 +1,18 @@
-:root{
-    --main-color: rgba(0,150,136 ,1);
+:root {
+    --main-color: rgba(0, 150, 136, 1);
 }
+
 html {
     scroll-behavior: smooth;
 }
 
 /*body {*/
-    /*!*background-image: url("/static/img/neuron_bg.jpg");*!*/
-    /*background-color: white;*/
-    /*background-size: cover;*/
-    /*background-attachment: fixed;*/
+/*!*background-image: url("/static/img/neuron_bg.jpg");*!*/
+/*background-color: white;*/
+/*background-size: cover;*/
+/*background-attachment: fixed;*/
 
-    /*margin: 0;*/
+/*margin: 0;*/
 /*}*/
 
 
@@ -27,10 +28,12 @@ html {
     display: flex;
     justify-content: center;
 }
+
 .nav .profile {
     color: white;
     float: left;
 }
+
 .nav a {
     color: white;
     text-decoration: none;
@@ -39,13 +42,13 @@ html {
 }
 
 a:hover {
-    color: rgba(0,150,136 ,1);
+    color: rgba(0, 150, 136, 1);
 }
 
 
 .active {
     /*background-color: #26C6DA;*/
-    color: rgba(0,150,136 ,1);
+    color: rgba(0, 150, 136, 1);
 }
 
 .nav .icon {
@@ -54,7 +57,7 @@ a:hover {
 
 
 footer {
-    background: rgba(33,33,33 ,1);
+    background: rgba(33, 33, 33, 1);
     padding: 2%;
     display: flex;
     color: white;

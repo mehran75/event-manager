@@ -1,0 +1,75 @@
+{% extends "base_layout.html" %}
+{% load static from staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+        {{ block.super }}
+        <title>Sign-up</title>
+
+
+        <link rel="stylesheet" type="text/css" href="{% static 'style/account.css' %}"/>
+    {% endblock %}
+</head>
+<body>
+{% block content %}
+    <header>
+        {% block header %}
+            {{ block.super }}
+        {% endblock %}
+    </header>
+
+    <div class="wrapper-div">
+               <p class="login-result">{{ result }}</p>
+     <form method="post" class="sign-up-form" action="/account/register">
+
+
+            {% csrf_token %}
+            <div class="container">
+
+                <div class="input-div">
+                    <input type="text" placeholder="first name" name="first_name" required>
+                </div>
+
+                <div class="input-div">
+                    <input type="text" placeholder="last name" name="last_name" required>
+                </div>
+
+                <div class="input-div">
+                    <input type="tel" placeholder="cellphone number" name="cellphone">
+                </div>
+
+                <div class="input-div">
+                    <input type="text" placeholder="Mail" name="mail" required>
+                </div>
+
+
+                <div class="input-div">
+                    <input type="password" placeholder="Password" name="password" required>
+                </div>
+                <div class="input-div">
+                    <input type="password" placeholder="confirm password" name="confirm_password" required>
+                </div>
+
+
+                <button type="submit">Sign-up</button>
+            </div>
+
+
+            <a href="/account/login">Already signed up?</a>
+
+        </form>
+    </div>
+
+
+
+    {% block footer %}
+        {{ block.super }}
+    {% endblock %}
+
+{% endblock %}
+
+
+</body>
+</html>
