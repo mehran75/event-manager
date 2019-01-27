@@ -2,6 +2,7 @@ from datetime import datetime
 
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
+from database.models import Event
 
 from django.contrib import admin
 
@@ -57,3 +58,16 @@ def register_new_user(fields_dic, is_admin=False):
     user.save()
 
     return user
+
+
+def get_active_events():
+    # print(Event.objects.filter(is_active=True))
+    return Event.objects.filter(is_active=True)
+
+
+def get_all_events():
+    return Event.objects.all()
+
+
+def get_users_count():
+    return User.objects.count()

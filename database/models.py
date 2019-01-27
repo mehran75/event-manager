@@ -17,6 +17,8 @@ class Event(models.Model):
 
     categoryId = models.ForeignKey(Category, on_delete=models.CASCADE, blank=False)
 
+    is_active = models.BooleanField(('active'), default=True)
+
 
 # here is only answer to requests
 class Request(models.Model):

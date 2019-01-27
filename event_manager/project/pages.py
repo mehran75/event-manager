@@ -2,6 +2,9 @@ from django.shortcuts import render, HttpResponseRedirect
 
 # from django.contrib.auth import login, authenticate
 from django.contrib.auth.views import login_required
+from database.database_methods import get_active_events, get_all_events, get_users_count
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 from django.views.decorators.csrf import csrf_protect
 
 
@@ -14,7 +17,23 @@ def handler500(request):
 
 
 def home(request):
-    return render(request, 'home.html', {'activeEventCount': 0, 'totalEvents': 0, 'usersCount': 0})
+    active_events = get_active_events()
+    all_events = get_all_events()
+    users_count = get_users_count()
+
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(active_events, 6)
+    try:
+        events = paginator.page(page)
+    except PageNotAnInteger:
+        events = paginator.page(1)
+    except EmptyPage:
+        events = paginator.page(paginator.num_pages)
+
+    return render(request, 'home.html', {'activeEventCount': len(active_events),
+                                         'totalEvents': len(all_events), 'usersCount': users_count,
+                                         'events': events})
 
 
 def login(request):

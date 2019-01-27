@@ -10,7 +10,7 @@
         <title>Home</title>
 
 
-        <link rel="stylesheet" href={% static 'style/main.css'%}>
+        <link rel="stylesheet" href={% static 'style/main.css' %}>
 
     {% endblock %}
 </head>
@@ -18,111 +18,69 @@
 
 {% block content %}
 
-<header id="home">
+    <header id="home">
 
-    {% block header %}
-        {{ block.super }}
-    {% endblock %}
+        {% block header %}
+            {{ block.super }}
+        {% endblock %}
 
-    <div class="info-div">
-        <h3>Active events<br> {{ activeEventCount }}</h3>
-        <h3>Total events<br> {{ totalEvents }}</h3>
-        <h3>Total Users<br> {{ usersCount }}</h3>
-    </div>
+        <div class="info-div">
+            <h3>Active events<br> {{ activeEventCount }}</h3>
+            <h3>Total events<br> {{ totalEvents }}</h3>
+            <h3>Total Users<br> {{ usersCount }}</h3>
+        </div>
 
 
-</header>
+    </header>
 
 
 
     <section id="event-section" class="event-section">
         <div class="container">
+            {% for item in events %}
+                <div class="card">
+                    <img alt="card-view" style="width:100%" src={% static 'img/event-default.png' %}/>
+                    <h1>{{ item.title }}</h1>
+                    {#                    <p class="price">Free</p>#}
+                    <p>{{ item.body }}</p>
+                    <p>
 
-            <div class="card">
-                <img alt="card-view" style="width:100%" src={% static 'img/event-default.png' %}/>
-                <h1>event</h1>
-                <p class="price">Free</p>
-                <p>Some text about the jeans. Super slim and comfy lorem ipsum lorem jeansum. Lorem jeamsun denim lorem
-                    jeansum.</p>
-                <p>
-                    <button>Register now</button>
-                </p>
-            </div>
-
-            <div class="card">
-                <img alt="card-view" style="width:100%" src={% static 'img/event-default.png' %}/>
-                <h1>event</h1>
-                <p class="price">Free</p>
-                <p>Some text about the jeans. Super slim and comfy lorem ipsum lorem jeansum. Lorem jeamsun denim lorem
-                    jeansum.</p>
-                <p>
-                    <button>Register now</button>
-                </p>
-            </div>
-
-            <div class="card">
-                <img alt="card-view" style="width:100%" src={% static 'img/event-default.png' %}/>
-                <h1>event</h1>
-                <p class="price">Free</p>
-                <p>Some text about the jeans. Super slim and comfy lorem ipsum lorem jeansum. Lorem jeamsun denim lorem
-                    jeansum.</p>
-                <p>
-                    <button>Register now</button>
-                </p>
-            </div>
-
-            <div class="card">
-                <img alt="card-view" style="width:100%" src={% static 'img/event-default.png' %}/>
-                <h1>event</h1>
-                <p class="price">Free</p>
-                <p>Some text about the jeans. Super slim and comfy lorem ipsum lorem jeansum. Lorem jeamsun denim lorem
-                    jeansum.</p>
-                <p>
-                    <button>Register now</button>
-                </p>
-            </div>
-
-            <div class="card">
-                <img alt="card-view" style="width:100%" src={% static 'img/event-default.png' %}/>
-                <h1>event</h1>
-                <p class="price">Free</p>
-                <p>Some text about the jeans. Super slim and comfy lorem ipsum lorem jeansum. Lorem jeamsun denim lorem
-                    jeansum.</p>
-                <p>
-                    <button>Register now</button>
-                </p>
-            </div>
-
-            <div class="card">
-                <img alt="card-view" style="width:100%" src={% static 'img/event-default.png' %}/>
-                <h1>event</h1>
-                <p class="price">Free</p>
-                <p>Some text about the jeans. Super slim and comfy lorem ipsum lorem jeansum. Lorem jeamsun denim lorem
-                    jeansum.</p>
-                <p>
-                    <button>Register now</button>
-                </p>
-            </div>
+                        {#                    <p>{{ item.category_title }}</p>#}
+                        <button>Register now</button>
+                    </p>
+                </div>
+            {% endfor %}
         </div><!-- end container -->
 
 
-        <div class="pagination">
-            <a href="#">&laquo;</a>
-            <a href="#" class="active">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#">5</a>
-            <a href="#">6</a>
-            <a href="#">&raquo;</a>
-        </div>
+
+        {% if events.has_other_pages %}
+            <div class="pagination">
+                {% if users.has_previous %}
+                    <a href="?page={{ users.previous_page_number }}">&laquo;</a>
+                {% endif %}
+
+                {% for i in users.paginator.page_range %}
+                    {% if users.number == i %}
+                        <a class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></a>
+                    {% else %}
+                        <a href="?page={{ i }}">{{ i }}</a>
+                    {% endif %}
+                {% endfor %}
+
+                {% if users.has_next %}
+                    <a href="?page={{ users.next_page_number }}">&raquo;</a>
+                {% endif %}
+            </div>
+
+        {% endif %}
 
 
     </section>
 
-{% block footer %}
+    {% block footer %}
         {{ block.super }}
-{% endblock %}
+    {% endblock %}
 
 {% endblock %}
 
