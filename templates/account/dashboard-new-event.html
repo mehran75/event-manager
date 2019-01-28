@@ -37,22 +37,15 @@
 
                 {% block content-side %}
 
-                    <p style="color: red;">(This text will be removed)<br>
-                        this is just a demo, so the other parts of this page will be completed for final phase of the
-                        project :)
-                    </p>
+                    <p>{{ result }}</p>
 
+                    <form method="post" class="new-event-form" action="/create-event" enctype="multipart/form-data">
+                        {% csrf_token %}
 
-                    <form method="post" class="new-event-form" href="#">
-
-                        <input type="text" name="title" placeholder="Title">
-                        <input type="file" name="banner" placeholder="banner of event (only image)">
-                        <input type="date" name="date" placeholder="date">
-                        <input type="time" name="time" placeholder="time">
-
-                        <input type="text" name="speakers" placeholder="speakers (separate with ',')">
-                        <input type="file" name="resume" placeholder="your resume">
-
+                        <input type="text" name="title" placeholder="Title" required>
+                        <input type="file" name="banner" placeholder="banner of event (only image)" required>
+                        <input type="datetime-local" name="start_date" placeholder="date" required>
+                        <textarea rows="4" cols="60" name="body" placeholder="description" required></textarea>
 
                         <button type="submit">Submit</button>
 

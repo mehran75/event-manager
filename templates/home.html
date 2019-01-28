@@ -1,6 +1,6 @@
 {% extends "base_layout.html" %}
 {% load static from staticfiles %}
-
+{% load index %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,43 +38,35 @@
     <section id="event-section" class="event-section">
         <div class="container">
 
-            {% if user.is_authenticated %}
-                {% for item,event in events.items %}
-                    <div class="card">
-                        <img alt="card-view" style="width:100%" src={% static 'img/event-default.png' %}/>
-                        <h1>{{ item.title }}</h1>
-                        {#                    <p class="price">Free</p>#}
-                        <p>{{ item.body }}</p>
-                        <p>
+            {% for item in events %}
+                <div class="card">
+                    <img alt="card-view" style="width:100%" height="250" width="250"
+                         src={{ item.picture.url }}/>
+                    <h1>{{ item.title }}</h1>
+                    {#                    <p class="price">Free</p>#}
 
-                            {% if event == -1 %}
+                    <p>
+                        {{ item.body|safe|truncatewords:"30"|linebreaks }}
+                        <a href="events/event-info?event={{ item.id }}">read more</a>
+
+                        {% if user.is_authenticated %}
+                            {% if  status_list|index:forloop.counter0  == -1 %}
                                 <a href="join-event?event={{ item.id }}">Register now</a>
-                            {% elif event.status == 0 %}
+                            {% elif status_list|index:forloop.counter0 %}
                                 <p class="pending">Pending</p>
                             {% else %}
                                 <p class="joined">Already joined</p>
                             {% endif %}
-                        {#                    <p>{{ item.category_title }}</p>#}
-
-                        </p>
-                    </div>
-                {% endfor %}
-            {% else %}
-                {% for item in events %}
-                    <div class="card">
-                        <img alt="card-view" style="width:100%" src={% static 'img/event-default.png' %}/>
-                        <h1>{{ item.title }}</h1>
-                        {#                    <p class="price">Free</p>#}
-                        <p>{{ item.body }}</p>
-                        <p>
-
+                        {% else %}
                             <a href="join-event?event={{ item.id }}">Register now</a>
-                            {#                    <p>{{ item.category_title }}</p>#}
 
-                        </p>
-                    </div>
-                {% endfor %}
-            {% endif %}
+                        {% endif %}
+                    {#                    <p>{{ item.category_title }}</p>#}
+
+                    </p>
+                </div>
+            {% endfor %}
+
         </div><!-- end container -->
 
 

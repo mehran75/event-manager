@@ -19,7 +19,7 @@ class Event(models.Model):
 
     is_active = models.BooleanField('active', default=True)
 
-    picture = models.TextField(null=True)
+    picture = models.ImageField(upload_to='images/')
 
 
 class JoinEvent(models.Model):

@@ -125,6 +125,9 @@ STATICFILES_DIRS = [
 LOGIN_REDIRECT_URL = '/account/dashboard'
 LOGIN_URL = '/account/login'
 LOGOUT_REDIRECT_URL = 'home'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
 # from django.contrib.auth.hashers import make_password
 # print(make_password('1234','12@{}E#E}{'))
 

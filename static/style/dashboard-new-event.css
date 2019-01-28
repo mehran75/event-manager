@@ -4,7 +4,7 @@
 }
 
 
-input[type=text], input[type=time], input[type=date], input[type=file] {
+input[type=text], input[type=time], input[type=datetime-local], input[type=file] {
 
     width: 100%;
     padding: 12px 20px;
@@ -15,6 +15,15 @@ input[type=text], input[type=time], input[type=date], input[type=file] {
     color: black;
 }
 
+textarea{
+
+    width: 100%;
+    padding: 12px 20px;
+    margin: 1%;
+    box-sizing: border-box;
+    background-color: rgba(245, 245, 245, 1);
+    color: black;
+}
 button:not(.select) {
     background-color: rgba(0, 150, 136, 1);
     color: white;

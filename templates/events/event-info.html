@@ -44,13 +44,16 @@
 
         {% if user.is_authenticated %}
             {% if status == -1 %}
-                <a class="request" href="join-event?event={{ event.id }}">Register now</a>
+                <a class="request" href="/join-event?event={{ event.id }}">Register now</a>
             {% elif status == 0 %}
-                <p class="pending" >Pending</p>
+                <p class="pending">Pending</p>
             {% else %}
-                <p class="joined" >Already joined</p>
+                <p class="joined">Already joined</p>
             {% endif %}
+        {% else %}
+            <a class="request" href="/join-event?event={{ event.id }}">Register now</a>
         {% endif %}
+
     </div>
 
 

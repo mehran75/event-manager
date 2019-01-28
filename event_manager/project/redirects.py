@@ -1,6 +1,7 @@
 from database import models
-from database.database_methods import register_new_user, get_hashed_password
+from database.database_methods import register_new_user, get_hashed_password, create_event
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.views import login_required
 
 from django.shortcuts import redirect, HttpResponse, render
 
@@ -81,3 +82,21 @@ def logout_user(request):
     return redirect('/')
 
 
+@login_required
+def create_new_event(request):
+    title = request.POST.get('title')
+    banner = request.FILES['banner']
+    start_date = request.POST.get('start_date')
+    body = request.POST.get('body')
+
+    if title is not None and banner is not None and start_date is not None and body is not None:
+        create_event(title, body, banner, start_date)
+        result = 'event created'
+    else:
+        result = 'wrong parameters'
+
+    return redirect('account/dashboard-new-event', {'result': result})
+
+
+def accept_request(request):
+    return None

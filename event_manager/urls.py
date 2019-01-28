@@ -18,6 +18,8 @@ from django.urls import path, include
 from django.conf.urls import handler404
 from event_manager.project import pages, redirects
 from django.contrib.auth import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,15 +30,21 @@ urlpatterns = [
     path('account/sign-up', pages.register, name='sign-up'),
 
     path('account/dashboard', pages.dashboard, name='dashboard'),
+    # path('account/dashboard-messages', pages.dashboard_message, name='dashboard-messages'),
     path('account/dashboard-event-list', pages.dashboard_event_list, name='dashboard-event-list'),
     path('account/dashboard-new-event', pages.dashboard_new_event, name='dashboard-new-event'),
 
     path('events/event-info', pages.event_info, name='event info'),
-    path('events/new-event', pages.new_event, name='new event'),
 
     # redirects
     path('account/validate-user', redirects.validate_user, name='validate-user'),
     path('account/register', redirects.register, name='register'),
     path('account/logout-user', redirects.logout_user, name='logout'),
-    path('join-event', pages.join_event, name='join-event')
+    path('join-event', pages.join_event, name='join-event'),
+    path('create-event', redirects.create_new_event, name='create-event'),
+
+    path('accept-request', redirects.accept_request, name='accept-request')
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

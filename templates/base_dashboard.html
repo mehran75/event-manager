@@ -44,7 +44,7 @@
                     <div class="menu-div">
                         <a class="menu-item active" href="/account/dashboard">Dashboard</a>
                         {% if user.is_superuser %}
-                            <a class="menu-item" href="/account/dashboard-new-event">New event</a>
+                            <a class="menu-item" href="dashboard-new-event">New event</a>
                             {#<a class="menu-item" href="#">All users(only for admin)</a>#}
                             <a class="menu-item" href="#">All events</a>
                             <a class="menu-item" href="#">requests</a>
@@ -60,13 +60,13 @@
             <div class="content-side">
 
                 {% block content-side %}
+                    <p>Last activities</p>
 
-                    <p style="color: red;">(This text will be removed)<br>
-                        this is just a demo, so the other parts of this page will be completed for final phase of the
-                        project :)
-                    </p>
-
-
+{#                    {% for item in activities %}#}
+{#                        <div class="item">#}
+{#                            <p>{{ item. }}</p>#}
+{#                        </div>#}
+{#                    {% endfor %}#}
                 {% endblock %}
 
             </div>

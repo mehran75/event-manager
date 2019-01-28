@@ -33,31 +33,25 @@ def home(request):
     except EmptyPage:
         events = paginator.page(paginator.num_pages)
 
+    user_request_status = []
     if request.user.is_authenticated:
-        user_request_status = dict()
+        user_request_status = []
         for event in events:
             e = find_joined_uesr(event, request.user)
             if e is None:
-                user_request_status[event] = -1
+                user_request_status.append(-1)
             else:
-                user_request_status[event] = e
-
-        print(user_request_status)
-
-        return render(request, 'home.html', {'activeEventCount': len(active_events),
-                                             'totalEvents': len(all_events), 'usersCount': users_count,
-                                             'events': user_request_status})
+                user_request_status.append(e)
 
     return render(request, 'home.html', {'activeEventCount': len(active_events),
                                          'totalEvents': len(all_events), 'usersCount': users_count,
-                                         'events': events})
+                                         'events': events, 'status_list': user_request_status})
 
 
 def login(request):
     # if request.user.is_authenticated:
     #     HttpResponseRedirect('/account/dashboard')
     # else:
-    print('here')
     return render(request, 'registration/login.html')
 
 
@@ -75,7 +69,34 @@ def dashboard(request):
 
 @login_required
 def dashboard_event_list(request):
-    return render(request, 'account/dashboard-event-list.html')
+    active_events = get_active_events()
+    print(active_events)
+    all_events = get_all_events()
+    users_count = get_users_count()
+
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(active_events, 6)
+    try:
+        events = paginator.page(page)
+    except PageNotAnInteger:
+        events = paginator.page(1)
+    except EmptyPage:
+        events = paginator.page(paginator.num_pages)
+
+    user_request_status = []
+    if request.user.is_authenticated:
+        user_request_status = []
+        for event in events:
+            e = find_joined_uesr(event, request.user)
+            if e is None:
+                user_request_status.append(-1)
+            else:
+                user_request_status.append(e)
+    return render(request, 'account/dashboard-event-list.html', {'activeEventCount': len(active_events),
+                                                                 'totalEvents': len(all_events),
+                                                                 'usersCount': users_count,
+                                                                 'events': events})
 
 
 @login_required
@@ -114,7 +135,3 @@ def event_info(request):
         else:
             return render(request, 'events/event-info.html',
                           {'event': event, 'status': -1})
-
-
-def new_event(request):
-    return render(request, 'events/dashboard-new-event.html')

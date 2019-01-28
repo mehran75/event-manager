@@ -2,7 +2,7 @@ from datetime import datetime
 
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
-from database.models import Event, JoinEvent
+from database.models import Event, JoinEvent, Category
 
 from django.contrib import admin
 
@@ -96,3 +96,8 @@ def find_joined_uesr(event, user):
         return i
 
     return None
+
+
+def create_event(title, body, banner, start_date):
+    Event.objects.create(title=title, picture=banner, body=body, start_date=start_date,
+                         category=Category.objects.filter(id=1)[0])
