@@ -28,3 +28,41 @@ img {
     width: 100%;
     max-height: 600px;
 }
+
+.request {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: rgba(0, 150, 136, 1);
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+    text-decoration: none;
+}
+.request:hover {
+    opacity: 0.7;
+}
+
+.pending {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: rgba(255, 160, 0, 1);
+    text-align: center;
+    width: 100%;
+    font-size: 18px;
+}
+
+.joined {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: rgba(117, 117, 117, 1);
+    text-align: center;
+    width: 100%;
+    font-size: 18px;
+}

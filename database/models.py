@@ -13,11 +13,21 @@ class Event(models.Model):
     title = models.TextField(blank=False)
     body = models.TextField()
 
-    date = timezone.now()
+    create_date = timezone.now()
+    start_date = models.DateTimeField(default=timezone.now(), blank=False)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=False)
 
-    categoryId = models.ForeignKey(Category, on_delete=models.CASCADE, blank=False)
+    is_active = models.BooleanField('active', default=True)
 
-    is_active = models.BooleanField(('active'), default=True)
+    picture = models.TextField(null=True)
+
+
+class JoinEvent(models.Model):
+    event = models.ForeignKey(Event, on_delete=models.CASCADE, blank=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=False)
+    join_date = timezone.now()
+    status = models.BooleanField('status', default=False)
+    last_status_change_date = models.DateTimeField(default=timezone.now())
 
 
 # here is only answer to requests

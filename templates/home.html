@@ -37,39 +37,64 @@
 
     <section id="event-section" class="event-section">
         <div class="container">
-            {% for item in events %}
-                <div class="card">
-                    <img alt="card-view" style="width:100%" src={% static 'img/event-default.png' %}/>
-                    <h1>{{ item.title }}</h1>
-                    {#                    <p class="price">Free</p>#}
-                    <p>{{ item.body }}</p>
-                    <p>
 
+            {% if user.is_authenticated %}
+                {% for item,event in events.items %}
+                    <div class="card">
+                        <img alt="card-view" style="width:100%" src={% static 'img/event-default.png' %}/>
+                        <h1>{{ item.title }}</h1>
+                        {#                    <p class="price">Free</p>#}
+                        <p>{{ item.body }}</p>
+                        <p>
+
+                            {% if event == -1 %}
+                                <a href="join-event?event={{ item.id }}">Register now</a>
+                            {% elif event.status == 0 %}
+                                <p class="pending">Pending</p>
+                            {% else %}
+                                <p class="joined">Already joined</p>
+                            {% endif %}
                         {#                    <p>{{ item.category_title }}</p>#}
-                        <button>Register now</button>
-                    </p>
-                </div>
-            {% endfor %}
+
+                        </p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                {% for item in events %}
+                    <div class="card">
+                        <img alt="card-view" style="width:100%" src={% static 'img/event-default.png' %}/>
+                        <h1>{{ item.title }}</h1>
+                        {#                    <p class="price">Free</p>#}
+                        <p>{{ item.body }}</p>
+                        <p>
+
+                            <a href="join-event?event={{ item.id }}">Register now</a>
+                            {#                    <p>{{ item.category_title }}</p>#}
+
+                        </p>
+                    </div>
+                {% endfor %}
+            {% endif %}
         </div><!-- end container -->
 
 
 
         {% if events.has_other_pages %}
             <div class="pagination">
-                {% if users.has_previous %}
-                    <a href="?page={{ users.previous_page_number }}">&laquo;</a>
+                {% if events.has_previous %}
+                    <a href="?page={{ events.previous_page_number }}#event-section">&laquo;</a>
                 {% endif %}
 
-                {% for i in users.paginator.page_range %}
-                    {% if users.number == i %}
+                {% for i in events.paginator.page_range %}
+                    {% if events.number == i %}
                         <a class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></a>
                     {% else %}
-                        <a href="?page={{ i }}">{{ i }}</a>
+                        <a href="?page={{ i }}#event-section">{{ i }}</a>
                     {% endif %}
                 {% endfor %}
 
-                {% if users.has_next %}
-                    <a href="?page={{ users.next_page_number }}">&raquo;</a>
+                {% if events.has_next %}
+                    <a href="?page={{ events.next_page_number }}#event-section">&raquo;</a>
                 {% endif %}
             </div>
 

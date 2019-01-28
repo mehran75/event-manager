@@ -31,11 +31,12 @@ urlpatterns = [
     path('account/dashboard-event-list', pages.dashboard_event_list, name='dashboard-event-list'),
     path('account/dashboard-new-event', pages.dashboard_new_event, name='dashboard-new-event'),
 
-    path('events/event-id', pages.event_id, name='event info'),
+    path('events/event-info', pages.event_info, name='event info'),
     path('events/new-event', pages.new_event, name='new event'),
 
     # redirects
     path('account/validate-user', redirects.validate_user, name='validate-user'),
     path('account/register', redirects.register, name='register'),
     path('account/logout-user', redirects.logout_user, name='logout'),
+    path('join-event', pages.join_event, name='join-event')
 ]

@@ -2,7 +2,7 @@ from datetime import datetime
 
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
-from database.models import Event
+from database.models import Event, JoinEvent
 
 from django.contrib import admin
 
@@ -71,3 +71,28 @@ def get_all_events():
 
 def get_users_count():
     return User.objects.count()
+
+
+def join_user_in_event(user, event_id):
+    try:
+        for i in Event.objects.filter(id=event_id):
+            event = i
+        JoinEvent.objects.get_or_create(event=event, user=user)
+        return True
+    except:
+        return False
+    # pass
+
+
+def find_event(event):
+    for i in Event.objects.filter(id=event):
+        return i
+
+    return None
+
+
+def find_joined_uesr(event, user):
+    for i in JoinEvent.objects.filter(user=user, event=event):
+        return i
+
+    return None

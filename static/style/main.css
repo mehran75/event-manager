@@ -98,7 +98,7 @@ section {
     color: grey;
 }
 
-.card button {
+.card a {
     border: none;
     outline: 0;
     padding: 12px;
@@ -108,9 +108,29 @@ section {
     cursor: pointer;
     width: 100%;
     font-size: 18px;
+    text-decoration: none;
+}
+.pending {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: rgba(255, 160, 0, 1);
+    text-align: center;
+    font-size: 18px;
 }
 
-.card button:hover {
+.joined {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: rgba(117, 117, 117, 1);
+    text-align: center;
+    font-size: 18px;
+}
+
+.card a:hover {
     opacity: 0.7;
 }
 
