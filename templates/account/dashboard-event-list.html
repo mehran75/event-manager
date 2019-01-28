@@ -1,5 +1,6 @@
 {% extends "base_dashboard.html" %}
 {% load static from staticfiles %}
+{% load  index %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,35 +23,21 @@
         <div class="content-side">
 
             {% block content-side %}
-                {{ block.super }}
                 <section id="event-section" class="event-section">
                     <div class="container">
 
                         {% for item in events %}
                             <div class="card">
-                                <img alt="card-view" style="width:100%" height="250" width="250"
+                                <img alt="card-view" style="width:100%" height="200" width="200"
                                      src={{ item.picture.url }}/>
                                 <h1>{{ item.title }}</h1>
                                 {#                    <p class="price">Free</p>#}
 
+{#                                <p>{{ item.body }}</p>#}
+
                                 <p>
-                                    {{ item.body|safe|truncatewords:"30"|linebreaks }}
-                                    <a href="events/event-info?event={{ item.id }}">read more</a>
-
-                                    {% if user.is_authenticated %}
-                                        {% if  status_list|index:forloop.counter0  == -1 %}
-                                            <a href="join-event?event={{ item.id }}">Register now</a>
-                                        {% elif status_list|index:forloop.counter0 %}
-                                            <p class="pending">Pending</p>
-                                        {% else %}
-                                            <p class="joined">Already joined</p>
-                                        {% endif %}
-                                    {% else %}
-                                        <a href="join-event?event={{ item.id }}">Register now</a>
-
-                                    {% endif %}
-                                {#                    <p>{{ item.category_title }}</p>#}
-
+                                    <a class="default" href="/edit-event?event={{ item.id }}"><i class="fas fa-edit"></i> </a>
+                                    <a class="red" href="/remove-event?event={{ item.id }}"><i class="fas fa-trash"></i></a>
                                 </p>
                             </div>
                         {% endfor %}

@@ -42,6 +42,8 @@ urlpatterns = [
     path('account/logout-user', redirects.logout_user, name='logout'),
     path('join-event', pages.join_event, name='join-event'),
     path('create-event', redirects.create_new_event, name='create-event'),
+    # path('edit-event', redirects.edit_event, name='create-event'),
+    path('remove-event', redirects.remove_event, name='create-event'),
 
     path('accept-request', redirects.accept_request, name='accept-request')
 ]
