@@ -41,6 +41,7 @@ img {
     font-size: 18px;
     text-decoration: none;
 }
+
 .request:hover {
     opacity: 0.7;
 }
@@ -65,4 +66,42 @@ img {
     text-align: center;
     width: 100%;
     font-size: 18px;
+}
+
+input[type=text], input[type=time], input[type=datetime-local], input[type=file] {
+
+    width: 100%;
+    padding: 12px 20px;
+    margin: 1%;
+    box-sizing: border-box;
+    border: none;
+    background-color: rgba(245, 245, 245, 1);
+    color: black;
+}
+
+textarea {
+
+    width: 100%;
+    padding: 12px 20px;
+    margin: 1%;
+    box-sizing: border-box;
+    background-color: rgba(245, 245, 245, 1);
+    color: black;
+}
+
+.event-banner {
+    width: 100%;
+
+}
+
+.form-container {
+    width: calc(100% - 60px);
+    padding: 60px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-container form {
+    width: 100%;
 }

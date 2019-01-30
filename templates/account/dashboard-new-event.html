@@ -8,6 +8,7 @@
         <title>new event</title>
 
         <link rel="stylesheet" type="text/css" href={% static 'style/dashboard-new-event.css' %}/>
+        <link rel="stylesheet" type="text/css" href={% static 'style/form_style.css' %}/>
     {% endblock %}
 </head>
 <body>
@@ -28,7 +29,19 @@
 
             <div class="list-side">
                 {% block list-side %}
-                    {{ block.super }}
+
+                    <div class="menu-div">
+                        <a class="menu-item" href="dashboard">Dashboard</a>
+                        {% if user.is_superuser %}
+                            <a class="menu-item active" href="dashboard-new-event">New event</a>
+                            {#<a class="menu-item" href="#">All users(only for admin)</a>#}
+                            <a class="menu-item" href="dashboard-event-list">All events</a>
+                            <a class="menu-item" href="dashboard-requests">requests</a>
+                        {% endif %}
+
+{#                        <a class="menu-item" href="">My events</a>#}
+                        <a class="menu-item" href="#">Settings</a>
+                    </div>
 
                 {% endblock %}
             </div>
@@ -41,13 +54,29 @@
 
                     <form method="post" class="new-event-form" action="/create-event" enctype="multipart/form-data">
                         {% csrf_token %}
-
-                        <input type="text" name="title" placeholder="Title" required>
-                        <input type="file" name="banner" placeholder="banner of event (only image)" required>
-                        <input type="datetime-local" name="start_date" placeholder="date" required>
-                        <textarea rows="4" cols="60" name="body" placeholder="description" required></textarea>
-
-                        <button type="submit">Submit</button>
+                        <div class="form-container">
+                            <form>
+                            <div class="form-group">
+                                <input type="text" required="required"/>
+                                <label for="input" class="control-label">Title</label><i class="bar"></i>
+                            </div>
+                            <div class="form-group">
+                                <h4 style="color: #333333">Image Upload</h4>
+                                <input type="file" required="required"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="datetime-local" required="required"/>
+                                <label for="input" class="control-label">Date</label><i class="bar"></i>
+                            </div>
+                            <div class="form-group">
+                                 <textarea required="required">{{ event.body }}</textarea>
+                                <label for="textarea" class="control-label">Body</label><i class="bar"></i>
+                             </div>
+                            <div class="button-container">
+                                <button type="submit" class="button"><span>Submit</span></button>
+                             </div>
+                            </form>
+                        </div>
 
                     </form>
 

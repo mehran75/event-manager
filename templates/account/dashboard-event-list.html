@@ -15,8 +15,18 @@
 
         <div class="list-side">
             {% block list-side %}
-                {{ block.super }}
+                <div class="menu-div">
+                    <a class="menu-item" href="dashboard">Dashboard</a>
+                    {% if user.is_superuser %}
+                        <a class="menu-item" href="dashboard-new-event">New event</a>
+                        {#<a class="menu-item" href="#">All users(only for admin)</a>#}
+                        <a class="menu-item active" href="dashboard-event-list">All events</a>
+                        <a class="menu-item" href="dashboard-requests">requests</a>
+                    {% endif %}
 
+{#                    <a class="menu-item" href="">My events</a>#}
+                    <a class="menu-item" href="#">Settings</a>
+                </div>
             {% endblock %}
         </div>
 
@@ -33,10 +43,11 @@
                                 <h1>{{ item.title }}</h1>
                                 {#                    <p class="price">Free</p>#}
 
-{#                                <p>{{ item.body }}</p>#}
+                                {#                                <p>{{ item.body }}</p>#}
 
                                 <p>
-                                    <a class="default" href="/edit-event?event={{ item.id }}"><i class="fas fa-edit"></i> </a>
+                                    <a class="default" href="/events/edit-event?event={{ item.id }}"><i
+                                            class="fas fa-edit"></i> </a>
                                     <a class="red" href="/remove-event?event={{ item.id }}"><i class="fas fa-trash"></i></a>
                                 </p>
                             </div>

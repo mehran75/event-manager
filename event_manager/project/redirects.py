@@ -1,8 +1,9 @@
 from database import models
-from database.database_methods import register_new_user, get_hashed_password, create_event, remove_event_from_db
+from database.database_methods import register_new_user, get_hashed_password, create_event, remove_event_from_db, \
+    get_event
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import login_required
-
+from .forms import EventForm
 from django.shortcuts import redirect, HttpResponse, render
 
 
@@ -98,11 +99,21 @@ def create_new_event(request):
     return redirect('account/dashboard-new-event', {'result': result})
 
 
+@login_required
 def accept_request(request):
     return None
 
 
+@login_required
 def remove_event(request):
     e_id = request.GET.get('event')
     remove_event_from_db(e_id)
     return redirect('account/dashboard-event-list')
+
+
+@login_required
+def edit_event(request):
+    e_id = request.GET.get('event')
+    # form = EventForm(instance=get_event(e_id))
+
+    return render(request, 'events/edit-event.html', {'event': get_event(e_id)})

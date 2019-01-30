@@ -3,7 +3,7 @@ from django.shortcuts import render, Http404, redirect
 # from django.contrib.auth import login, authenticate
 from django.contrib.auth.views import login_required
 from database.database_methods import get_active_events, get_all_events, get_users_count, join_user_in_event, \
-    find_event, find_joined_uesr
+    find_event, find_joined_uesr, get_request_list
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from django.views.decorators.csrf import csrf_protect
@@ -135,3 +135,20 @@ def event_info(request):
         else:
             return render(request, 'events/event-info.html',
                           {'event': event, 'status': -1})
+
+
+@login_required
+def dashboard_requests(request):
+    requests = get_request_list()
+
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(requests, 10)
+    try:
+        requests = paginator.page(page)
+    except PageNotAnInteger:
+        requests = paginator.page(1)
+    except EmptyPage:
+        requests = paginator.page(paginator.num_pages)
+
+    return render(request, 'account/dashboard-requests.html', {'requests': requests})

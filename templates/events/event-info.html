@@ -20,45 +20,46 @@
         {% endblock %}
     </header>
     <br/>
+    {% block main-container %}
+        <div class="main-container" itemscope itemtype="http://schema.org/Event">
+            <div class="event-banner">
+                <img itemprop="image" src="{{ event.picture.url }}" alt="banner">
+            </div>
 
-    <img src="{{ event.picture }}" alt="banner" class="event-banner">
+            <div class="content">
 
-    <div class="content">
+                <h2 itemprop="name">{{ event.title }}</h2>
 
-        <h2>{{ event.title }}</h2>
+                <p class="time" itemprop="startDate">Start at: {{ event.start_date }}</p>
 
-        <p class="time">Start at: {{ event.start_date }}</p>
+                {#        <p class="authors">Authors: Me and you </p>#}
 
-        {#        <p class="authors">Authors: Me and you </p>#}
+                <p itemprop="description">{{ event.body }}</p>
 
-        <p>{{ event.body }}</p>
+                <br/>
 
-        <br/>
-
-        {#        <label class="timer">00:01:59</label>#}
-
-
-        {#        <div class="sponsor-div">#}
-        {#            needs to complete#}
-        {#        </div>#}
-
-        {% if user.is_authenticated %}
-            {% if status == -1 %}
-                <a class="request" href="/join-event?event={{ event.id }}">Register now</a>
-            {% elif status == 0 %}
-                <p class="pending">Pending</p>
-            {% else %}
-                <p class="joined">Already joined</p>
-            {% endif %}
-        {% else %}
-            <a class="request" href="/join-event?event={{ event.id }}">Register now</a>
-        {% endif %}
-
-    </div>
+                {#        <label class="timer">00:01:59</label>#}
 
 
+                {#        <div class="sponsor-div">#}
+                {#            needs to complete#}
+                {#        </div>#}
 
+                {% if user.is_authenticated %}
+                    {% if status == -1 %}
+                        <a class="request" href="/join-event?event={{ event.id }}">Register now</a>
+                    {% elif status == 0 %}
+                        <p class="pending">Pending</p>
+                    {% else %}
+                        <p class="joined">Already joined</p>
+                    {% endif %}
+                {% else %}
+                    <a class="request" href="/join-event?event={{ event.id }}">Register now</a>
+                {% endif %}
 
+            </div>
+        </div>
+    {% endblock %}
 
 
 
@@ -68,6 +69,19 @@
 
 {% endblock %}
 
+<script>
+    function loadDoc() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("demo").innerHTML =
+                    this.responseText;
+            }
+        };
+        xhttp.open("GET", "ajax_info.txt", true);
+        xhttp.send();
+    }
+</script>
 
 </body>
 </html>

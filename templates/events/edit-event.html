@@ -1,0 +1,68 @@
+{% extends "base_layout.html" %}
+{% load static from staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+        {{ block.super }}
+        <meta charset="UTF-8">
+        <title>event-id</title>
+
+        <link rel="stylesheet" type="text/css" href={% static 'style/event_info.css' %}/>
+        <link rel="stylesheet" type="text/css" href={% static 'style/dashboard-new-event.css' %}/>
+        <link rel="stylesheet" type="text/css" href={% static 'style/dashboard.css' %}/>
+        <link rel="stylesheet" type="text/css" href={% static 'style/form_style.css' %}/>
+
+    {% endblock %}
+    </head>
+<body>
+{% block content %}
+    <header>
+        {% block header %}
+            {{ block.super }}
+        {% endblock %}
+    </header>
+    {%  block main-container %}
+        <div class="main-container">
+            <div class="form-container">
+                <form>
+                <div class="form-group">
+                    <input type="text" value="{{ event.title }}" required="required"/>
+                    <label for="input" class="control-label">Title</label><i class="bar"></i>
+                </div>
+                <div class="form-group">
+                     <textarea required="required">{{ event.body }}</textarea>
+                    <label for="textarea" class="control-label">Body</label><i class="bar"></i>
+                 </div>
+                <div class="checkbox">
+                    <label>
+                        {% if event.is_active %}
+                            <input type="checkbox" checked="checked"/><i class="helper"></i>Active
+                        {% else %}
+                            <input type="checkbox"/><i class="helper"></i>Active
+                        {% endif %}
+                    </label>
+                </div>
+                <div class="form-group">
+                    <h4 style="color: #333333">Image Upload</h4>
+                    <h5 style="margin-left: 20px">{{ event.picture.url }}</h5>
+                    <input type="file" required="required"/>
+                </div>
+                <div class="button-container">
+                    <button type="submit" class="button"><span>Submit</span></button>
+                 </div>
+                </form>
+            </div>
+        </div>
+    {%  endblock %}
+
+    {% block footer %}
+        {{ block.super }}
+    {% endblock %}
+
+{% endblock %}
+
+
+</body>
+</html>

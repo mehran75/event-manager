@@ -55,6 +55,7 @@ def register_new_user(fields_dic, is_admin=False):
 
     if User.objects.filter(username=fields_dic['mail']).exists():
         return None
+
     user.save()
 
     return user
@@ -125,3 +126,11 @@ def edit_event_in_db(id, title=None, start_time=None, body=None, picture=None):
         event.picture = picture
 
     event.save()
+
+
+def get_event(id):
+    return Event.objects.filter(id=id)[0]
+
+
+def get_request_list():
+    return JoinEvent.objects.all()

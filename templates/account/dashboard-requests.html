@@ -1,14 +1,13 @@
-{% extends "base_layout.html" %}
+{% extends "base_dashboard.html" %}
 {% load static from staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     {% block head %}
         {{ block.super }}
-        <meta charset="UTF-8">
-        <title>Dashboard</title>
+        <title>new event</title>
 
-        <link rel="stylesheet" type="text/css" href={% static 'style/dashboard.css' %}/>
+        <link rel="stylesheet" type="text/css" href={% static 'style/dashboard-new-event.css' %}/>
     {% endblock %}
 </head>
 <body>
@@ -17,40 +16,26 @@
         {% block header %}
             {{ block.super }}
 
-            <br>
-            <br>
-
-            <div class="profile-info">
-                <img id="profile-img" src={% static 'img/profile-icon.png' %}/>
-
-                <h4>Hi {{ user.first_name }}</h4>
-                <a href="notifications"><i class="fas fa-bell"></i></a>
-                <a href="logout-user"><i class="fas fa-sign-out-alt"></i></a>
-
-
-            </div>
-
         {% endblock %}
     </header>
 
 
-
-
-
     <div class="container">
         {% block container %}
+
             <div class="list-side">
                 {% block list-side %}
+
                     <div class="menu-div">
-                        <a class="menu-item active" href="dashboard">Dashboard</a>
+                        <a class="menu-item" href="dashboard">Dashboard</a>
                         {% if user.is_superuser %}
                             <a class="menu-item" href="dashboard-new-event">New event</a>
                             {#<a class="menu-item" href="#">All users(only for admin)</a>#}
                             <a class="menu-item" href="dashboard-event-list">All events</a>
-                            <a class="menu-item" href="dashboard-requests">requests</a>
+                            <a class="menu-item active" href="dashboard-requests">requests</a>
                         {% endif %}
 
-{#                        <a class="menu-item" href="">My events</a>#}
+                        {#                        <a class="menu-item" href="">My events</a>#}
                         <a class="menu-item" href="#">Settings</a>
                     </div>
 
@@ -60,13 +45,21 @@
             <div class="content-side">
 
                 {% block content-side %}
-                    <p>Last activities</p>
 
-{#                    {% for item in activities %}#}
-{#                        <div class="item">#}
-{#                            <p>{{ item. }}</p>#}
-{#                        </div>#}
-{#                    {% endfor %}#}
+                    {% for item in requests %}
+
+                        <div class="request-div">
+                            <div class="request-div-p">
+                                <p>{{ item.user.username }}</p>
+                                <p>{{ item.event.title }}</p>
+                            </div>
+                            <div class="request-div-button">
+                                <button type="button">Accept</button>
+                                <button type="button" style="background-color: #d9534f">Reject</button>
+                            </div>
+                        </div>
+
+                    {% endfor %}
                 {% endblock %}
 
             </div>

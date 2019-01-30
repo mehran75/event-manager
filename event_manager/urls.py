@@ -17,10 +17,6 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import handler404
 from event_manager.project import pages, redirects
-from django.contrib.auth import views
-from django.conf import settings
-from django.conf.urls.static import static
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', pages.home, name='home'),
@@ -33,8 +29,10 @@ urlpatterns = [
     # path('account/dashboard-messages', pages.dashboard_message, name='dashboard-messages'),
     path('account/dashboard-event-list', pages.dashboard_event_list, name='dashboard-event-list'),
     path('account/dashboard-new-event', pages.dashboard_new_event, name='dashboard-new-event'),
+    path('account/dashboard-requests', pages.dashboard_requests, name='dashboard-requests'),
 
     path('events/event-info', pages.event_info, name='event info'),
+    path('events/edit-event', redirects.edit_event, name='create-event'),
 
     # redirects
     path('account/validate-user', redirects.validate_user, name='validate-user'),
@@ -42,11 +40,14 @@ urlpatterns = [
     path('account/logout-user', redirects.logout_user, name='logout'),
     path('join-event', pages.join_event, name='join-event'),
     path('create-event', redirects.create_new_event, name='create-event'),
-    # path('edit-event', redirects.edit_event, name='create-event'),
     path('remove-event', redirects.remove_event, name='create-event'),
 
     path('accept-request', redirects.accept_request, name='accept-request')
 ]
+from django.contrib.auth import views
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
