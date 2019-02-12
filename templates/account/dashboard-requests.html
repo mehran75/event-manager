@@ -51,11 +51,25 @@
                         <div class="request-div">
                             <div class="request-div-p">
                                 <p>{{ item.user.username }}</p>
-                                <p>{{ item.event.title }}</p>
+                                <a href="/events/event-info?event={{ item.event.id }}">{{ item.event.title }}</a>
                             </div>
-                            <div class="request-div-button">
-                                <button type="button">Accept</button>
-                                <button type="button" style="background-color: #d9534f">Reject</button>
+                            <div class="request-div-button" id="request-btns">
+                                {% if item.pending and not item.status %}
+                                    <p id="request-status-{{ item.user.id }}-{{ item.event.id }}">Status</p>
+                                    <button id="accept-btn-{{ item.user.id }}-{{ item.event.id }}" type="button"
+                                            onclick="accept_request({{ item.user.id }}, {{ item.event.id }})">Accept
+                                    </button>
+                                    <button id="reject-btn-{{ item.user.id }}-{{ item.event.id }}" type="button"
+                                            style="background-color: #d9534f"
+                                            onclick="reject_request({{ item.user.id }}, {{ item.event.id }})">Reject
+                                    </button>
+                                {% else %}
+                                    {% if item.status %}
+                                        <p id="request-status-{{ item.user.id }}-{{ item.event.id }}">Accepted</p>
+                                    {% elif not item.pending and not item.status %}
+                                        <p id="request-status-{{ item.user.id }}-{{ item.event.id }}">Rejected</p>
+                                    {% endif %}
+                                {% endif %}
                             </div>
                         </div>
 
@@ -73,8 +87,53 @@
         {{ block.super }}
     {% endblock %}
 
-{% endblock %}
+    <script>
 
+        function accept_request(u_id, e_id) {
+            console.log(e_id);
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    var response = JSON.parse(this.responseText);
+                    var st = response.status;
+                    var element = document.getElementById("accept-btn-" + u_id + "-" + e_id);
+                    element.parentNode.removeChild(element);
+                    var element = document.getElementById("reject-btn-" + u_id + "-" + e_id);
+                    element.parentNode.removeChild(element);
+                    if (st === true) {
+                        document.getElementById("request-status-" + u_id + "-" + e_id).innerHTML = "Accepted"
+                    } else {
+                        document.getElementById("request-status-" + u_id + "-" + e_id).innerHTML = "Rejected"
+                    }
+                }
+            };
+
+            xhttp.open("GET", "/accept-request?user_id=" + u_id + "&event=" + e_id, true);
+            xhttp.send();
+        }
+
+        function reject_request(u_id, e_id) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    var response = JSON.parse(this.responseText);
+                    var st = response.status;
+                    var element = document.getElementById("accept-btn-" + u_id + "-" + e_id);
+                    element.parentNode.removeChild(element);
+                    var element = document.getElementById("reject-btn-" + u_id + "-" + e_id);
+                    element.parentNode.removeChild(element);
+                    if (st === true) {
+                        document.getElementById("request-status-" + u_id + "-" + e_id).innerHTML = "Accepted"
+                    } else {
+                        document.getElementById("request-status-" + u_id + "-" + e_id).innerHTML = "Rejected"
+                    }
+                }
+            };
+            xhttp.open("GET", "/reject-request?user_id=" + u_id + "&event=" + e_id, true);
+            xhttp.send();
+        }
+    </script>
+{% endblock %}
 
 </body>
 </html>

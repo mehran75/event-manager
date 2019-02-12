@@ -1,10 +1,12 @@
 from database import models
 from database.database_methods import register_new_user, get_hashed_password, create_event, remove_event_from_db, \
     get_event
+from database import database_methods
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import login_required
 from .forms import EventForm
 from django.shortcuts import redirect, HttpResponse, render
+import json
 
 
 def validate_user(request):
@@ -101,6 +103,31 @@ def create_new_event(request):
 
 @login_required
 def accept_request(request):
+    if request.user.is_superuser:
+        if request.method == 'GET':
+            join_event = database_methods.accept_request(request.GET.get('event'), request.GET.get('user_id'))
+            if join_event is None:
+                return HttpResponse('wrong event id')
+
+            d = {'status': join_event.status,
+                 'pending': join_event.pending}
+            return HttpResponse(json.dumps(d))
+
+    return None
+
+
+@login_required
+def reject_request(request):
+    if request.user.is_superuser:
+        if request.method == 'GET':
+            join_event = database_methods.reject_request(request.GET.get('event'), request.GET.get('user_id'))
+            if join_event is None:
+                return HttpResponse('wrong event id')
+
+            d = {'status': join_event.status,
+                 'pending': join_event.pending}
+            return HttpResponse(json.dumps(d))
+
     return None
 
 
@@ -115,5 +142,8 @@ def remove_event(request):
 def edit_event(request):
     e_id = request.GET.get('event')
     # form = EventForm(instance=get_event(e_id))
+
+    if request.method == 'POST':
+        database_methods.edit_event(request,e_id)
 
     return render(request, 'events/edit-event.html', {'event': get_event(e_id)})

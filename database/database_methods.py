@@ -53,8 +53,8 @@ def register_new_user(fields_dic, is_admin=False):
     user.is_staff = is_admin
     user.date_joined = datetime.now()
 
-    if User.objects.filter(username=fields_dic['mail']).exists():
-        return None
+    # if User.objects.filter(username=fields_dic['mail']).exists():
+    #     return None
 
     user.save()
 
@@ -78,7 +78,7 @@ def join_user_in_event(user, event_id):
     try:
         for i in Event.objects.filter(id=event_id):
             event = i
-        JoinEvent.objects.get_or_create(event=event, user=user)
+        JoinEvent.objects.get_or_create(event=event, user=user, pending=True, status=False)
         return True
     except:
         return False
@@ -132,5 +132,49 @@ def get_event(id):
     return Event.objects.filter(id=id)[0]
 
 
-def get_request_list():
-    return JoinEvent.objects.all()
+def get_request_list(user=None):
+    if user is None:
+        return JoinEvent.objects.all()
+
+    return JoinEvent.objects.filter(user=user).all()
+
+
+def accept_request(event_id, user_id):
+    join_event = JoinEvent.objects.filter(event_id=event_id, user_id=user_id)[0]
+
+    if join_event is not None:
+        join_event.pending = False
+        join_event.status = True
+
+        join_event.save()
+
+    return join_event
+
+
+def reject_request(event_id, user_id):
+    join_event = JoinEvent.objects.filter(event_id=event_id, user_id=user_id)[0]
+
+    if join_event is not None:
+        join_event.pending = False
+        join_event.status = False
+
+        join_event.save()
+
+    return join_event
+
+
+def edit_event(request, e_id):
+    # e_id = request.GET.get('event')
+    title = request.POST.get('title')
+    is_active = request.POST.get('is_active')
+    banner = request.FILES['banner']
+    start_date = request.POST.get('start_date')
+
+    event = Event.objects.filter(id=e_id)[0]
+
+    event.title = title
+    event.picture = banner
+    event.start_date = start_date
+    event.is_active = is_active
+
+    event.save()

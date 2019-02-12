@@ -50,7 +50,7 @@
                             <a class="menu-item" href="dashboard-requests">requests</a>
                         {% endif %}
 
-{#                        <a class="menu-item" href="">My events</a>#}
+                        {#                        <a class="menu-item" href="">My events</a>#}
                         <a class="menu-item" href="#">Settings</a>
                     </div>
 
@@ -60,13 +60,50 @@
             <div class="content-side">
 
                 {% block content-side %}
-                    <p>Last activities</p>
+                    <div>
+                        <h2>Pending requests</h2>
 
-{#                    {% for item in activities %}#}
-{#                        <div class="item">#}
-{#                            <p>{{ item. }}</p>#}
-{#                        </div>#}
-{#                    {% endfor %}#}
+                        {% for item in requests %}
+
+                            {% if user.is_superuser %}
+                            {%  if item.pending %}
+                                 <div class="request-div">
+                            <div class="request-div-p">
+                                <p>{{ item.user.username }}</p>
+                                <a href="/events/event-info?event={{ item.event.id }}">{{ item.event.title }}</a>
+                            </div>
+                            <div class="request-div-button" id="request-btns">
+                                {% if item.pending and not item.status %}
+                                    <p id="request-status-{{ item.user.id }}-{{ item.event.id }}">Status</p>
+                                    <button id="accept-btn-{{ item.user.id }}-{{ item.event.id }}" type="button"
+                                            onclick="accept_request({{ item.user.id }}, {{ item.event.id }})">Accept
+                                    </button>
+                                    <button id="reject-btn-{{ item.user.id }}-{{ item.event.id }}" type="button"
+                                            style="background-color: #d9534f"
+                                            onclick="reject_request({{ item.user.id }}, {{ item.event.id }})">Reject
+                                    </button>
+                                {% else %}
+                                    {% if item.status %}
+                                        <p id="request-status-{{ item.user.id }}-{{ item.event.id }}">Accepted</p>
+                                    {% elif not item.pending and not item.status %}
+                                        <p id="request-status-{{ item.user.id }}-{{ item.event.id }}">Rejected</p>
+                                    {% endif %}
+                                {% endif %}
+                            </div>
+                        </div>
+                            {% endif %}
+                            {% endif %}
+
+                        {% endfor %}
+
+
+                    </div>
+
+                    {#                    {% for item in activities %}#}
+                    {#                        <div class="item">#}
+                    {#                            <p>{{ item. }}</p>#}
+                    {#                        </div>#}
+                    {#                    {% endfor %}#}
                 {% endblock %}
 
             </div>

@@ -26,28 +26,29 @@
     {%  block main-container %}
         <div class="main-container">
             <div class="form-container">
-                <form>
+                <form method="POST" action="/events/edit-event" enctype="multipart/form-data">
+                {% csrf_token %}
                 <div class="form-group">
-                    <input type="text" value="{{ event.title }}" required="required"/>
+                    <input name="title" type="text" value="{{ event.title }}" required="required"/>
                     <label for="input" class="control-label">Title</label><i class="bar"></i>
                 </div>
                 <div class="form-group">
-                     <textarea required="required">{{ event.body }}</textarea>
+                     <textarea name="body" required="required">{{ event.body }}</textarea>
                     <label for="textarea" class="control-label">Body</label><i class="bar"></i>
                  </div>
                 <div class="checkbox">
                     <label>
                         {% if event.is_active %}
-                            <input type="checkbox" checked="checked"/><i class="helper"></i>Active
+                            <input name="is_active" type="checkbox" checked="checked"/><i class="helper"></i>Active
                         {% else %}
-                            <input type="checkbox"/><i class="helper"></i>Active
+                            <input name="is_active" type="checkbox"/><i class="helper"></i>Active
                         {% endif %}
                     </label>
                 </div>
                 <div class="form-group">
                     <h4 style="color: #333333">Image Upload</h4>
                     <h5 style="margin-left: 20px">{{ event.picture.url }}</h5>
-                    <input type="file" required="required"/>
+                    <input name="banner" type="file"/>
                 </div>
                 <div class="button-container">
                     <button type="submit" class="button"><span>Submit</span></button>

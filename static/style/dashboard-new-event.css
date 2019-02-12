@@ -24,54 +24,9 @@ textarea{
     background-color: rgba(245, 245, 245, 1);
     color: black;
 }
-button:not(.select) {
-    background-color: rgba(0, 150, 136, 1);
-    color: white;
-    padding: 14px 20px;
-    margin: 1%;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-}
+
 
 /* Add a hover effect for buttons */
 button:hover {
     opacity: 0.8;
-}
-
-.request-div {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    background-color: #dddddd;
-    margin: 10px;
-}
-
-.request-div-p {
-    display: flex;
-    width: calc(100% - 160px);
-}
-.request-div-p p {
-    width: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.request-div-button {
-    width: 160px;
-}
-
-@media only screen and (max-width: 850px) {
-    .request-div {
-        flex-wrap: wrap;
-    }
-    .request-div-p {
-        width: 100%;
-        flex-direction: column;
-        align-items: center;
-    }
-  .request-div-button {
-        width: 40%;
-        margin-bottom: 10px;
-  }
 }

@@ -28,6 +28,7 @@ class JoinEvent(models.Model):
     join_date = timezone.now()
     status = models.BooleanField('status', default=False)
     last_status_change_date = models.DateTimeField(default=timezone.now())
+    pending = models.BooleanField('pending', default=True)
 
 
 # here is only answer to requests

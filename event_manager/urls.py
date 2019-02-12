@@ -32,7 +32,7 @@ urlpatterns = [
     path('account/dashboard-requests', pages.dashboard_requests, name='dashboard-requests'),
 
     path('events/event-info', pages.event_info, name='event info'),
-    path('events/edit-event', redirects.edit_event, name='create-event'),
+    path('events/edit-event', redirects.edit_event, name='edit-event'),
 
     # redirects
     path('account/validate-user', redirects.validate_user, name='validate-user'),
@@ -42,7 +42,8 @@ urlpatterns = [
     path('create-event', redirects.create_new_event, name='create-event'),
     path('remove-event', redirects.remove_event, name='create-event'),
 
-    path('accept-request', redirects.accept_request, name='accept-request')
+    path('accept-request', redirects.accept_request, name='accept-request'),
+    path('reject-request', redirects.reject_request, name='reject-request'),
 ]
 from django.contrib.auth import views
 from django.conf import settings

@@ -14,7 +14,8 @@ body {
 .profile-info p {
     color: gray;
 }
-.profile-info h4{
+
+.profile-info h4 {
     color: white;
 }
 
@@ -65,7 +66,7 @@ body {
     opacity: .9;
 }
 
-.menu-div a, .profile-info a  {
+.menu-div a, .profile-info a {
     color: white;
     text-decoration: none;
     padding: 20px 10px;
@@ -73,7 +74,7 @@ body {
 
 }
 
-.menu-item.active{
+.menu-item.active {
 
     color: white;
     background-color: rgba(0, 150, 136, 1);
@@ -108,7 +109,7 @@ section {
     outline: 0;
     color: white;
     padding: 4%;
-    background-color: rgba(244,67,54,1);
+    background-color: rgba(244, 67, 54, 1);
     text-align: center;
     cursor: pointer;
     width: 100%;
@@ -117,7 +118,7 @@ section {
     text-decoration: none;
 }
 
-.card .default  {
+.card .default {
     border: none;
     outline: 0;
     color: white;
@@ -160,3 +161,65 @@ section {
     background-color: #ddd;
 }
 
+
+.request-div {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    background-color: #dddddd;
+    margin: 10px;
+}
+
+.request-div-p {
+    display: flex;
+    width: calc(100% - 160px);
+}
+
+.request-div-p a,.request-div-p p {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.request-div-button {
+    width: 160px;
+}
+
+.accepted {
+    background-color: rgba(0,150,136 ,1);
+}
+
+.pending {
+    color: rgba(255, 160, 0, 1);
+}
+.rejected {
+    color: rgba(244, 67, 54, 1);
+}
+
+button:not(.select) {
+    background-color: rgba(0, 150, 136, 1);
+    color: white;
+    padding: 14px 20px;
+    margin: 1%;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+@media only screen and (max-width: 850px) {
+    .request-div {
+        flex-wrap: wrap;
+    }
+
+    .request-div-p {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .request-div-button {
+        width: 40%;
+        margin-bottom: 10px;
+    }
+}

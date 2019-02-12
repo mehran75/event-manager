@@ -64,7 +64,9 @@ def register(request):
 # =======================================================
 @login_required
 def dashboard(request):
-    return render(request, 'base_dashboard.html')
+    requests = get_request_list(request.user)
+    print('requests', request)
+    return render(request, 'base_dashboard.html', {'requests': requests})
 
 
 @login_required
@@ -139,16 +141,18 @@ def event_info(request):
 
 @login_required
 def dashboard_requests(request):
-    requests = get_request_list()
+    requests = []
+    if request.user.is_superuser:
+        requests = get_request_list()
 
-    page = request.GET.get('page', 1)
+        page = request.GET.get('page', 1)
 
-    paginator = Paginator(requests, 10)
-    try:
-        requests = paginator.page(page)
-    except PageNotAnInteger:
-        requests = paginator.page(1)
-    except EmptyPage:
-        requests = paginator.page(paginator.num_pages)
+        paginator = Paginator(requests, 10)
+        try:
+            requests = paginator.page(page)
+        except PageNotAnInteger:
+            requests = paginator.page(1)
+        except EmptyPage:
+            requests = paginator.page(paginator.num_pages)
 
     return render(request, 'account/dashboard-requests.html', {'requests': requests})
